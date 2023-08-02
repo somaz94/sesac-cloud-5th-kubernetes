@@ -129,10 +129,17 @@ ingress_nginx_enabled: true
 ...
 metallb_enabled: true
 ...
-metallb_ip_range:
-  - "192.168.56.200-192.168.56.209"
-...
 metallb_protocol: "layer2"
+...
+metallb_config:
+  address_pools:
+    primary:
+      ip_range:
+        - 192.168.56.200-192.168.56.209
+      auto_assign: true
+...
+  layer2:
+    - primary
 ...
 ```
 
@@ -141,8 +148,6 @@ metallb_protocol: "layer2"
 ```yaml
 ...
 kube_proxy_strict_arp: true
-...
-container_manager: docker
 ...
 ```
 
